@@ -2,9 +2,9 @@
 Presto SQL 自定义函数    
 
 ### 项目环境
-- Presto SQL: 332
-- Java: 1.8.0_161
-- Maven: 3.6.2
+- Presto SQL: 340
+- Java: 11.0.9 (zulu11.43.55-ca-jdk11.0.9.1)
+- Maven: 3.6.3
 
 ### 函数列表
 #### 标量函数（Scalar Function）
@@ -30,7 +30,7 @@ Presto SQL 自定义函数
 ### 使用说明
 1. 克隆项目到本地，`git clone project`    
 2. 编译项目，`mvn clean package`    
-3. 得到插件 zip 包：`presto-udfs-332.zip`    
-4. 将`data`目录下的`ip2region.db`文件放入编译得到的`presto-udfs-332.zip`压缩包中    
-5. 上传`presto-udfs-332.zip`至Presto服务器，解压 zip 文件至 Presto SQL 安装目录 **plugin** 目录下    
+3. 得到插件 zip 包：`presto-udfs-340.zip`    
+4. 将`data`目录下的`ip2region.db`文件放入编译得到的`presto-udfs-340.zip`压缩包中    
+5. 上传`presto-udfs-340.zip`至Presto服务器，解压 zip 文件至 Presto SQL 安装目录 **plugin** 目录下    
 6. 重启 Presto SQL    

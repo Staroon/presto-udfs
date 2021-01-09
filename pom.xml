@@ -8,15 +8,14 @@
     <parent>
         <groupId>io.prestosql</groupId>
         <artifactId>presto-root</artifactId>
-        <version>332</version>
+        <version>340</version>
     </parent>
 
     <groupId>com.staroon.bigdata</groupId>
-    <packaging>presto-plugin</packaging>
-    <version>332</version>
-
     <artifactId>presto-udfs</artifactId>
+    <version>340</version>
     <name>presto-udfs</name>
+    <packaging>presto-plugin</packaging>
 
     <scm>
         <url>https://github.com/Staroon/presto-udfs</url>
@@ -26,12 +25,15 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <presto.version>332</presto.version>
+        <project.build.targetJdk>11</project.build.targetJdk>
+        <presto.version>340</presto.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.lionsoul</groupId>
             <artifactId>ip2region</artifactId>
@@ -58,10 +60,6 @@
             <artifactId>jol-core</artifactId>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
@@ -69,7 +67,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.1.1</version>
                 <executions>
                     <execution>
                         <id>validate</id>
@@ -94,9 +92,9 @@
             <plugin>
                 <groupId>org.gaul</groupId>
                 <artifactId>modernizer-maven-plugin</artifactId>
-                <version>1.6.0</version>
+                <version>2.1.0</version>
                 <configuration>
-                    <javaVersion>1.8</javaVersion>
+                    <javaVersion>11</javaVersion>
                 </configuration>
             </plugin>
             <plugin>
