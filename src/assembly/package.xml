@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.1.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.1.0 http://maven.apache.org/xsd/assembly-2.1.0.xsd">
+    <id>bundle</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <!--if auto generate a root folder-->
+    <includeBaseDirectory>true</includeBaseDirectory>
+    <!--copy the jar into the zip-->
+    <files>
+        <file>
+            <source>data/ip2region.db</source>
+            <outputDirectory>/</outputDirectory>
+            <fileMode>644</fileMode>
+        </file>
+        <file>
+            <source>${project.build.directory}/presto-udfs-340.jar</source>
+            <outputDirectory>/</outputDirectory>
+            <fileMode>644</fileMode>
+        </file>
+        <file>
+            <source>${project.build.directory}/presto-udfs-340-services.jar</source>
+            <outputDirectory>/</outputDirectory>
+            <fileMode>644</fileMode>
+        </file>
+    </files>
+    <!--package the jar and figure out if contain artifact, if true there will be many dependency jars-->
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>/</outputDirectory>
+            <useProjectArtifact>false</useProjectArtifact>
+        </dependencySet>
+    </dependencySets>
+</assembly>
