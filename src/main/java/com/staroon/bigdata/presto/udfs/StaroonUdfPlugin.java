@@ -15,6 +15,7 @@
 package com.staroon.bigdata.presto.udfs;
 
 import com.google.common.collect.ImmutableSet;
+import com.staroon.bigdata.presto.udfs.scalar.IDCardParseFunction;
 import com.staroon.bigdata.presto.udfs.scalar.IPLocationFunction;
 import io.prestosql.spi.Plugin;
 
@@ -28,6 +29,7 @@ public class StaroonUdfPlugin
     {
         return ImmutableSet.<Class<?>>builder()
                 .add(IPLocationFunction.class)
+                .add(IDCardParseFunction.class)
                 .build();
     }
 }
