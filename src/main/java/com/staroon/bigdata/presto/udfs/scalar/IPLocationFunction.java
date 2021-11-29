@@ -60,13 +60,10 @@ public class IPLocationFunction
 
     @ScalarFunction("ip_location")
     @Description("Return the input ip location: country, province, city, isp")
+    @SqlNullable
     @SqlType(StandardTypes.VARCHAR)
-    public static Slice ipToRegion(@SqlType(StandardTypes.VARCHAR) Slice mode, @SqlNullable @SqlType(StandardTypes.VARCHAR) Slice ipSlice)
+    public static Slice ipToRegion(@SqlType(StandardTypes.VARCHAR) Slice mode, @SqlType(StandardTypes.VARCHAR) Slice ipSlice)
     {
-        if (ipSlice == null) {
-            return Slices.EMPTY_SLICE;
-        }
-
         String ip = ipSlice.toStringUtf8();
         String locations;
 
@@ -75,11 +72,11 @@ public class IPLocationFunction
                 locations = SEARCHER.memorySearch(ip).getRegion();
             }
             catch (Exception e) {
-                return Slices.EMPTY_SLICE;
+                return null;
             }
         }
         else {
-            return Slices.EMPTY_SLICE;
+            return null;
         }
 
         String[] res = locations.split("\\|");
@@ -87,7 +84,7 @@ public class IPLocationFunction
             return Slices.utf8Slice(locations);
         }
         String result;
-        switch (mode.toStringUtf8()) {
+        switch (mode.toStringUtf8().toLowerCase()) {
             case "country":
                 result = res[0];
                 break;
@@ -101,7 +98,7 @@ public class IPLocationFunction
                 result = res[4];
                 break;
             default:
-                throw new PrestoException(INVALID_ARGUMENTS, "Invalid arguments, the param1 could be: country, province, city, isp.");
+                throw new PrestoException(INVALID_ARGUMENTS, "Invalid arguments, the first param could be: country, province, city, isp.");
         }
         return Slices.utf8Slice(result);
     }
